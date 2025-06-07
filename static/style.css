@@ -15,6 +15,28 @@ input, button {
   margin-top: 2rem;
   padding: 1rem;
   background: white;
+  width: 30rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  border: 1px solid #ccc;
+  background: white;
+  position: absolute;
+  z-index: 10;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#suggestions li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #f0f0f0;
 }
