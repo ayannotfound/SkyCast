@@ -6,7 +6,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 def get_city_coordinates(city):
-    url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}"
+    url = f"https://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -21,19 +21,6 @@ def get_city_coordinates(city):
             return None
     else:
         print("Failed to fetch coordinates:", response.status_code)
-        return None
-
-def get_uv(lat, lon, city_name):
-    url = f"http://api.openweathermap.org/data/2.5/uvi?appid={API_KEY}&lat={lat}&lon={lon}"
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        uv_index = data["value"]
-        print(f"UV Index in {city_name}: {uv_index}")
-        return uv_index
-    else:
-        print("Failed to fetch UV index:", response.status_code)
         return None
 
 def get_aqi(lat, lon):
@@ -51,14 +38,26 @@ def get_aqi(lat, lon):
                 4: "Poor",
                 5: "Very Poor"
             }
-            print(f"Air Quality Index: {aqi}")
-            print(f"Air Quality Level: {aqi_levels.get(aqi)}")
-            return aqi
+            print(f"Air Quality Index: {aqi} ({aqi_levels.get(aqi)})")
+            return aqi, aqi_levels.get(aqi)
         else:
             print("City not found.")
-            return None
+            return None, None
     else:
         print("Failed to fetch AQI data:", response.status_code)
+        return None, None
+
+def get_uv(lat, lon, city_name):
+    url = f"https://api.openweathermap.org/data/2.5/uvi?appid={API_KEY}&lat={lat}&lon={lon}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        uv_index = data.get("value", "N/A")
+        print(f"UV Index in {city_name}: {uv_index}")
+        return uv_index
+    else:
+        print("Failed to fetch UV index:", response.status_code)
         return None
 
 def get_weather(city):
@@ -78,7 +77,8 @@ def get_weather(city):
             humidity = data["main"]["humidity"]
             wind_speed = data["wind"]["speed"]
             description = data["weather"][0]["description"].title()
-            print(f"Weather in {city}:\n"
+
+            print(f"\n🌦️ Weather in {city_name}:\n"
                   f"Temperature: {temp}°C\n"
                   f"Feels Like: {feelslike}°C\n"
                   f"Humidity: {humidity}%\n"
@@ -86,13 +86,17 @@ def get_weather(city):
                   f"Description: {description}")
 
             uv_index = get_uv(lat, lon, city_name)
-            aqi = get_aqi(lat, lon)
+            aqi, aqi_desc = get_aqi(lat, lon)
+
             return {
                 "temperature": temp,
                 "feels_like": feelslike,
                 "humidity": humidity,
                 "wind_speed": wind_speed,
-                "uv_index": uv_index
+                "description": description,
+                "uv_index": uv_index,
+                "aqi": aqi,
+                "aqi_level": aqi_desc
             }
         else:
             print("City not found.")
@@ -100,10 +104,3 @@ def get_weather(city):
     else:
         print("Failed to fetch weather data:", response.status_code)
         return None
-
-print("Enter City Name:")
-city_name = input().strip()
-if city_name:
-    get_weather(city_name)
-else:
-    print("Error: No city name provided.")
