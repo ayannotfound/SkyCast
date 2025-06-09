@@ -30,7 +30,7 @@ def weather_route():
 @app.route("/suggest")
 def suggest_cities():
     query = request.args.get("query")
-    print("Suggestion query:", query)  # Debug print
+    print("Suggestion query:", query)
     if not query:
         return jsonify([])
 
@@ -42,7 +42,7 @@ def suggest_cities():
 
     cities = response.json()
     suggestions = [f"{c['name']}, {c.get('state', '')}, {c['country']}".strip(', ') for c in cities]
-    print("Suggestions:", suggestions)  # Debug print
+    print("Suggestions:", suggestions)
     return jsonify(suggestions)
 
 

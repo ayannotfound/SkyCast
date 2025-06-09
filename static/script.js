@@ -2,44 +2,32 @@ const input = document.getElementById("city");
 const suggestions = document.getElementById("suggestions");
 const weatherResult = document.getElementById("weatherResult");
 const unitRadios = document.querySelectorAll('input[name="units"]');
+const unitSwitch = document.getElementById('unitSwitch');
 
-// Get the selected unit (metric or imperial)
 function getSelectedUnit() {
-    let selectedUnit = "metric";
-    unitRadios.forEach(radio => {
-        if (radio.checked) {
-            selectedUnit = radio.value;
-        }
-    });
-    return selectedUnit;
+    return unitSwitch && unitSwitch.checked ? "imperial" : "metric";
 }
 
-// Add event listeners to unit toggle
-unitRadios.forEach(radio => {
-    radio.addEventListener("change", () => {
-        // If we already have a city displayed, refresh the weather with new units
+if (unitSwitch) {
+    unitSwitch.addEventListener("change", () => {
         if (input.value.trim()) {
             fetchWeather(input.value.trim());
         }
     });
-});
+}
 
-// Function to add animation class with delay
 function animateElement(element, className, delay = 0) {
     setTimeout(() => {
         element.classList.add(className);
     }, delay);
 }
 
-// Function to fetch weather data
 function fetchWeather(city) {
     const units = getSelectedUnit();
     
-    // Reset and hide the weather box
     weatherResult.innerHTML = '';
     weatherResult.classList.remove('visible');
     
-    // Hide suggestions
     suggestions.innerHTML = '';
     
     fetch(`/weather?city=${encodeURIComponent(city)}&units=${units}`)
@@ -71,7 +59,6 @@ function fetchWeather(city) {
                 </ul>
             `;
             
-            // Add animation with a slight delay
             setTimeout(() => {
                 weatherResult.classList.add('visible');
             }, 100);
@@ -83,7 +70,6 @@ function fetchWeather(city) {
         });
 }
 
-// Create animated suggestions
 function createAnimatedSuggestion(city, index) {
     const div = document.createElement("div");
     div.textContent = city;
@@ -93,7 +79,6 @@ function createAnimatedSuggestion(city, index) {
     div.style.transition = "all 0.3s ease";
     div.style.transitionDelay = `${index * 0.05}s`;
     
-    // Animate in after a small delay
     setTimeout(() => {
         div.style.opacity = "1";
         div.style.transform = "translateY(0)";
@@ -108,7 +93,6 @@ function createAnimatedSuggestion(city, index) {
     return div;
 }
 
-// Hide suggestions when clicking outside
 document.addEventListener('click', function(event) {
     if (event.target !== input && !suggestions.contains(event.target)) {
         suggestions.innerHTML = '';
@@ -117,14 +101,14 @@ document.addEventListener('click', function(event) {
 
 input.addEventListener("input", () => {
     const query = input.value.trim();
-    weatherResult.innerHTML = "";  // Clear old weather results while typing
+    weatherResult.innerHTML = "";
     weatherResult.classList.remove('visible');
 
     if (query.length >= 2) {
         fetch(`/suggest?query=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => {
-                suggestions.innerHTML = ""; // Clear previous suggestions
+                suggestions.innerHTML = "";
                 if (data.length === 0) {
                     suggestions.style.display = "none";
                 } else {

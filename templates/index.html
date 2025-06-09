@@ -12,12 +12,12 @@
   <div class="search-container fade-in">
     <input type="text" id="city" placeholder="Enter city name...">
     <div class="unit-toggle">
-      <label>
-        <input type="radio" name="units" value="metric" checked> °C
+      <span id="c-label">°C</span>
+      <label class="switch">
+        <input type="checkbox" id="unitSwitch">
+        <span class="slider"></span>
       </label>
-      <label>
-        <input type="radio" name="units" value="imperial"> °F
-      </label>
+      <span id="f-label">°F</span>
     </div>
   </div>
   
@@ -26,6 +26,12 @@
   <div class="weather-box" id="weatherResult"></div>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <footer class="footer">
+    Made by Ayan<br>
+    <a href="https://github.com/ayannotfound" target="_blank">GitHub</a> |
+    <a href="https://www.linkedin.com/in/ayush-anand-420590306/" target="_blank">LinkedIn</a>
+  </footer>
 
 </body>
 </html>

@@ -28,8 +28,8 @@ Shows current weather, UV index, and air quality for any city.
 ## Getting Started
 1. Clone the repo
    ```bash
-   git clone https://github.com/yourusername/weather-info.git
-   cd weather-info
+   git clone https://github.com/ayannotfound/Weather.git
+   cd Weather
    ```
 2. Install dependencies
    ```bash
@@ -56,7 +56,9 @@ Shows current weather, UV index, and air quality for any city.
 ---
 
 ## About Me
-[LinkedIn](https://www.linkedin.com/in/ayush-anand-420590306/)
+
+[LinkedIn](https://www.linkedin.com/in/ayush-anand-420590306/)  
+[GitHub](https://github.com/ayannotfound)
 
 ---
 
