@@ -7,14 +7,25 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>🌤️ Weather Info</h1>
-  <input type="text" id="city" placeholder="Enter city">
-<div id="suggestions"></div>
+  <h1 class="fade-in">🌤️ Weather Info</h1>
+  
+  <div class="search-container fade-in">
+    <input type="text" id="city" placeholder="Enter city name...">
+    <div class="unit-toggle">
+      <label>
+        <input type="radio" name="units" value="metric" checked> °C
+      </label>
+      <label>
+        <input type="radio" name="units" value="imperial"> °F
+      </label>
+    </div>
+  </div>
+  
+  <div id="suggestions"></div>
 
   <div class="weather-box" id="weatherResult"></div>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
-  <script src="{{ url_for('static', filename='suggest.js') }}"></script>
 
 </body>
 </html>

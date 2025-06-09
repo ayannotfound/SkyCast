@@ -60,13 +60,13 @@ def get_uv(lat, lon, city_name):
         print("Failed to fetch UV index:", response.status_code)
         return None
 
-def get_weather(city):
+def get_weather(city, units="metric"):
     coords = get_city_coordinates(city)
     if not coords:
         return None
     lat, lon, city_name = coords
 
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units={units}"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -77,12 +77,16 @@ def get_weather(city):
             humidity = data["main"]["humidity"]
             wind_speed = data["wind"]["speed"]
             description = data["weather"][0]["description"].title()
+            icon_code = data["weather"][0]["icon"]
+            
+            temp_unit = "°C" if units == "metric" else "°F"
+            wind_unit = "m/s" if units == "metric" else "mph"
 
-            print(f"\n🌦️ Weather in {city_name}:\n"
-                  f"Temperature: {temp}°C\n"
-                  f"Feels Like: {feelslike}°C\n"
+            print(f"\nWeather in {city_name}:\n"
+                  f"Temperature: {temp}{temp_unit}\n"
+                  f"Feels Like: {feelslike}{temp_unit}\n"
                   f"Humidity: {humidity}%\n"
-                  f"Wind Speed: {wind_speed} m/s\n"
+                  f"Wind Speed: {wind_speed} {wind_unit}\n"
                   f"Description: {description}")
 
             uv_index = get_uv(lat, lon, city_name)
@@ -96,7 +100,9 @@ def get_weather(city):
                 "description": description,
                 "uv_index": uv_index,
                 "aqi": aqi,
-                "aqi_level": aqi_desc
+                "aqi_level": aqi_desc,
+                "icon": icon_code,
+                "units": units
             }
         else:
             print("City not found.")

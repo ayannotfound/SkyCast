@@ -16,10 +16,12 @@ def index():
 @app.route("/weather")
 def weather_route():
     city = request.args.get("city")
+    units = request.args.get("units", "metric")
+    
     if not city:
         return jsonify({"error": "City parameter is required"}), 400
 
-    weather_data = get_weather(city)
+    weather_data = get_weather(city, units)
     if weather_data is None:
         return jsonify({"error": "Failed to get weather data"}), 500
 
@@ -45,4 +47,4 @@ def suggest_cities():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

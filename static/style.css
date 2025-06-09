@@ -3,6 +3,16 @@ body {
   padding: 2rem;
   background: #eef2f3;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
 }
 
 input, button {
@@ -13,30 +23,155 @@ input, button {
 
 .weather-box {
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background: white;
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.weather-box.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #suggestions {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0;
+  margin: 0;
   border: 1px solid #ccc;
   background: white;
-  position: absolute;
+  position: relative;
   z-index: 10;
   max-height: 150px;
   overflow-y: auto;
+  width: 100%;
+  max-width: 30rem;
+  border-radius: 4px;
+  margin-top: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none; /* Hide by default */
 }
 
-#suggestions li {
-  padding: 0.5rem;
+/* Show suggestions when it has content */
+#suggestions:not(:empty) {
+  display: block;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 30rem;
+  position: relative;
+  margin: 0 auto;
+}
+
+.unit-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.unit-toggle label {
+  margin-right: 10px;
   cursor: pointer;
 }
 
-#suggestions li:hover {
+.weather-icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  animation: fadeIn 1s ease;
+}
+
+.weather-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion:hover {
   background-color: #f0f0f0;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+/* Staggered animations for list items */
+ul li {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: slideInFromLeft 0.4s ease forwards;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply staggered delay to list items */
+ul li:nth-child(1) { animation-delay: 0.1s; }
+ul li:nth-child(2) { animation-delay: 0.2s; }
+ul li:nth-child(3) { animation-delay: 0.3s; }
+ul li:nth-child(4) { animation-delay: 0.4s; }
+ul li:nth-child(5) { animation-delay: 0.5s; }
+ul li:nth-child(6) { animation-delay: 0.6s; }
+ul li:nth-child(7) { animation-delay: 0.7s; }
+
+/* Input animation */
+#city {
+  width: 100%;
+  transition: all 0.3s ease;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#city:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
