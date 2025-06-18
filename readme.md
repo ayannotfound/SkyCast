@@ -1,23 +1,23 @@
-# Weather Info
+# 🌤 Weather Info
 
-A simple weather web app built with [Flask](https://flask.palletsprojects.com/) and [OpenWeatherMap](https://openweathermap.org)'s API. 
+A modern, responsive weather web app built with [Flask](https://flask.palletsprojects.com/) and [OpenWeatherMap](https://openweathermap.org)'s API. 
 Shows current weather, UV index, and air quality for any city.
 
 [Live Demo](https://weather-ehsc.onrender.com)
 
 ---
 
-## Features
-- Real-time weather, UV index, and air quality
-- City autocomplete
-- Switch between °C and °F
-- Responsive design
-- Deployed on Render
+## 🚀 Features
+- 🌤 Real-time weather, UV index, and air quality
+- 🔍City autocomplete
+- 🌡 Switch between °C and °F
+- 🖥️ Responsive design
+- ⚡ Deployed on Render
 - **Android version in progress**
 
 ---
 
-## Tech Stack
+## 🧩 Tech Stack
 - Python (Flask)
 - OpenWeatherMap API
 - HTML, CSS, JavaScript
@@ -25,7 +25,7 @@ Shows current weather, UV index, and air quality for any city.
 
 ---
 
-## Getting Started
+## 🛠️ Getting Started
 1. Clone the repo
    ```bash
    git clone https://github.com/ayannotfound/Weather.git
@@ -47,7 +47,7 @@ Shows current weather, UV index, and air quality for any city.
 
 ---
 
-## What I Learned
+## 🧠 What I Learned
 - Flask routes and templates
 - Using `jsonify` and `render_template`
 - API integration
@@ -55,7 +55,8 @@ Shows current weather, UV index, and air quality for any city.
 
 ---
 
-## About Me
+## 📫 About Me
+
 
 [LinkedIn](https://www.linkedin.com/in/ayush-anand-420590306/)  
 [GitHub](https://github.com/ayannotfound)
