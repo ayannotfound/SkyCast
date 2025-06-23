@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   padding: 2rem;
-  background: #eef2f3;
+  background: radial-gradient(circle, #f1febc -10%, #c4f8ff 100%);
   color: #333;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ input, button {
 .weather-box {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.5);
   width: 100%;
   max-width: 30rem;
   border-radius: 8px;
