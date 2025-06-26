@@ -1,8 +1,8 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 2rem;
-  background: radial-gradient(circle, #f1febc -10%, #c4f8ff 100%);
-  color: #333;
+  background-color: rgb(14, 12, 21);
+  color: lightgray;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +15,8 @@ h1 {
 }
 
 input, button {
+  background-color: transparent;
+  color: lightgray;
   padding: 0.5rem;
   font-size: 1rem;
   margin-right: 0.5rem;
@@ -23,7 +25,7 @@ input, button {
 .weather-box {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgb(14, 12, 21);
   width: 100%;
   max-width: 30rem;
   border-radius: 8px;
@@ -43,7 +45,7 @@ input, button {
   padding: 0;
   margin: 0;
   border: 1px solid #ccc;
-  background: white;
+  background: transparent;
   position: relative;
   z-index: 10;
   max-height: 150px;
@@ -100,7 +102,7 @@ input, button {
 }
 
 .suggestion:hover {
-  background-color: #f0f0f0;
+  background-color: #00000070;
 }
 
 @keyframes fadeIn {
@@ -170,24 +172,43 @@ ul li:nth-child(7) { animation-delay: 0.7s; }
 }
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   font-size: 0.95em;
-  margin-top: 2.5em;
-  color: #888;
-  padding-bottom: 1em;
-  letter-spacing: 0.01em;
-  opacity: 0;
-  animation: fadeIn 0.7s 0.2s forwards;
+  padding: 12px 0;
+  z-index: 20;
 }
+
 .footer a {
   color: #4a90e2;
   text-decoration: none;
   margin: 0 0.3em;
-  transition: color 0.2s;
+  transition: 0.5s;
 }
+
 .footer a:hover {
-  color: #23527c;
-  text-decoration: underline;
+  color: transparent;
+  font-size: 1.5em;
+  background: linear-gradient(
+    to right,
+    #00aaa7,
+    #7f42a7,
+    #6600c5,
+    #1f2b9c,
+    #0099ff,
+    #00aaa7
+  );
+  background-clip: text;
+  background-size: 200%;
+  animation: GradientAnimation 2.5s infinite;
+}
+
+@keyframes GradientAnimation {
+  to {
+    background-position: 200%;
+  }
 }
 
 .switch {
@@ -209,7 +230,7 @@ ul li:nth-child(7) { animation-delay: 0.7s; }
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #1f2b9c;
   transition: background 0.3s;
   border-radius: 22px;
 }
