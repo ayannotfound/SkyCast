@@ -1,4 +1,4 @@
-# 🌤 Weather Info
+# 🌤 SkyCast
 
 A modern, responsive weather web app built with [Flask](https://flask.palletsprojects.com/) and [OpenWeatherMap](https://openweathermap.org)'s API. 
 Shows current weather, UV index, and air quality for any city.
@@ -17,6 +17,12 @@ Shows current weather, UV index, and air quality for any city.
 
 ---
 
+## 📸 Screenshots
+![Preview](preview1.png) | ![Weather Preview](preview2.png) |
+
+
+---
+
 ## 🧩 Tech Stack
 - Python (Flask)
 - OpenWeatherMap API
@@ -28,8 +34,8 @@ Shows current weather, UV index, and air quality for any city.
 ## 🛠️ Getting Started
 1. Clone the repo
    ```bash
-   git clone https://github.com/ayannotfound/Weather.git
-   cd Weather
+   git clone https://github.com/ayannotfound/SkyCast.git
+   cd SkyCast
    ```
 2. Install dependencies
    ```bash
