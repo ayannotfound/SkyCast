@@ -3,7 +3,7 @@
 A modern, responsive weather web app built with [Flask](https://flask.palletsprojects.com/) and [OpenWeatherMap](https://openweathermap.org)'s API. 
 Shows current weather, UV index, and air quality for any city.
 
-[Live Demo](https://weather-ehsc.onrender.com)
+[Live Demo](https://skycast-glo2.onrender.com)
 
 ---
 
@@ -18,7 +18,7 @@ Shows current weather, UV index, and air quality for any city.
 ---
 
 ## 📸 Screenshots
-![Preview](preview1.png) | ![Weather Preview](preview2.png) |
+![Preview](./screenshots/preview1.png) | ![Weather Preview](./screenshots/preview2.png) |
 
 
 ---
@@ -72,4 +72,4 @@ Shows current weather, UV index, and air quality for any city.
 **References:**
 - [Flask Quickstart](https://github.com/pallets/flask/blob/main/docs/quickstart.rst#_snippet_5)
 - [OpenWeatherMap API Docs](https://openweathermap.org/api)
-- [Weather Info Live Demo](https://weather-ehsc.onrender.com)
+- [Weather Info Live Demo](https://skycast-glo2.onrender.com)

@@ -29,6 +29,7 @@ input, button {
   width: 100%;
   max-width: 30rem;
   border-radius: 8px;
+  border: #0099ff 1px solid;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   transform: translateY(20px);
