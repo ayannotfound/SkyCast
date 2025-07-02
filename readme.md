@@ -18,7 +18,7 @@ Shows current weather, UV index, and air quality for any city.
 ---
 
 ## 📸 Screenshots
-![Preview](./screenshots/preview1.png) | ![Weather Preview](./screenshots/preview2.png) |
+![Preview](./screenshots/preview1.png) ![Weather Preview](./screenshots/preview2.png)
 
 
 ---
