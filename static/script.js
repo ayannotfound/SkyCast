@@ -4,6 +4,35 @@ const weatherResult = document.getElementById("weatherResult");
 const unitRadios = document.querySelectorAll('input[name="units"]');
 const unitSwitch = document.getElementById('unitSwitch');
 
+// Initialize Vanta background if available
+let vantaEffect;
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.VANTA && typeof VANTA.GLOBE === 'function') {
+        try {
+            vantaEffect = VANTA.GLOBE({
+                el: document.body,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.0,
+                scaleMobile: 1.0,
+                backgroundColor: 0x0e0c15,
+                color: 0x1f2b9c,
+                color2: 0x0099ff
+            });
+        } catch (e) {
+            console.warn('Vanta initialization failed:', e);
+        }
+    }
+});
+window.addEventListener('beforeunload', () => {
+    if (vantaEffect && typeof vantaEffect.destroy === 'function') {
+        vantaEffect.destroy();
+    }
+});
+
 function getSelectedUnit() {
     return unitSwitch && unitSwitch.checked ? "imperial" : "metric";
 }
@@ -59,9 +88,10 @@ function fetchWeather(city) {
                 </ul>
             `;
             
-            setTimeout(() => {
+            // Trigger entrance animation
+            requestAnimationFrame(() => {
                 weatherResult.classList.add('visible');
-            }, 100);
+            });
         })
         .catch(err => {
             weatherResult.innerHTML = `<p style="color:red;" class="fade-in">Weather fetch failed.</p>`;
